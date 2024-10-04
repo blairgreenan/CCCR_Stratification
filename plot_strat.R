@@ -7,8 +7,10 @@ strat <- read.table("Stratification.dat", header = TRUE, sep = "", col.names = c
 
 
 ggp1 <- ggplot(data=strat, aes(x=Year,y=SS)) +
+  geom_line(color = "red", linewidth = 0.5) +
   geom_point(color='red') +
   geom_smooth(method = 'lm', se = TRUE, color = "black") +
+  ylim(0.5,2.25) +
   ylab(expression(paste("Stratification (kg ", m^{-3}, ")")))  +
   xlab("") +
   geom_label(aes(x=2000, y=0.75, label = "Scotian Shelf"), color = "black")
@@ -20,11 +22,13 @@ confidence_95_SS <- confint(model_SS, level = 0.95)
 
 
 ggp2 <- ggplot(data=strat, aes(x=Year,y=S27)) +
+  geom_line(color = "red", linewidth = 0.5) +
   geom_point(color='red') +
   geom_smooth(method = 'lm', se = TRUE, color = "black") +
+  ylim(0.5,2.25) +
   ylab(expression(paste("Stratification (kg ", m^{-3}, ")")))  +
   xlab("Year") +
-  geom_label(aes(x=2000, y=1, label = "S27 - Newfoundland Shelf"), color = "black")
+  geom_label(aes(x=2000, y=0.75, label = "Newfoundland Shelf"), color = "black")
 # fit a linear model to the anomaly data
 model_S27 <- lm(strat$S27 ~ strat$Year)
 model_S27
