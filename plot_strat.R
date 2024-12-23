@@ -1,4 +1,4 @@
-# plot_stratification.R
+# plot_strat.R
 
 library(tidyverse)
 library(patchwork)
@@ -27,7 +27,7 @@ ggp2 <- ggplot(data=strat, aes(x=Year,y=S27)) +
   geom_smooth(method = 'lm', se = TRUE, color = "black") +
   ylim(0.5,2.25) +
   ylab(expression(paste("Stratification (kg ", m^{-3}, ")")))  +
-  xlab("Year") +
+  xlab("") +
   geom_label(aes(x=2000, y=0.75, label = "Newfoundland Shelf"), color = "black")
 # fit a linear model to the anomaly data
 model_S27 <- lm(strat$S27 ~ strat$Year)
@@ -38,4 +38,4 @@ confidence_95_S27 <- confint(model_S27, level = 0.95)
 
 ggp1/ggp2
 
-# ggsave("stratification.png", width = 6, height = 3, units = "in", scale = 1.5, dpi = 1200)
+ggsave("stratification.png", width = 6, height = 6, units = "in", scale = 1.0, dpi = 1200)
